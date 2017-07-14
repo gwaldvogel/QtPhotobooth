@@ -4,11 +4,13 @@
 #include <QObject>
 #include <thread>
 
+#include <GPIOWorkerThread.h>
+
 class RaspberryPiConnector : public QObject
 {
     Q_OBJECT
-
     Q_PROPERTY(bool buttonPressed READ buttonPressed NOTIFY buttonPressedChanged)
+
 public:
     explicit RaspberryPiConnector(QObject *parent = nullptr);
     ~RaspberryPiConnector();
@@ -18,13 +20,11 @@ signals:
     void buttonPressedChanged();
 
 private:
-    void gpioListener(RaspberryPiConnector* rpiConnector);
-    void gpioActivateChangedCallback();
-
-    bool gpioListenerRunning = true;
+    void gpioStatusWasChanged(bool status);
     bool gpioActive = false;
     bool buttonCanBePressed = true;
-    std::thread listenerThread;
+
+    GPIOWorkerThread* workerThread = NULL;
 };
 
 #endif // RASPBERRYPICONNECTOR_H
