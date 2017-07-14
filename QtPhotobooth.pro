@@ -5,7 +5,6 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     RaspberryPiConnector.cpp \
-    GpioWorker.cpp \
     GPIOClass.cpp
 
 RESOURCES += qml.qrc
@@ -34,5 +33,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     RaspberryPiConnector.h \
-    GpioWorker.h \
     GPIOClass.h
