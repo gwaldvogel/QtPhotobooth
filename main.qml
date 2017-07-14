@@ -24,15 +24,7 @@ Window {
         focus: visible
         MouseArea {
             anchors.fill: parent
-            onClicked: {
-                if(photoPreview.displayed) {
-                    resetPreview();
-                }
-                else
-                {
-                    countdown.start();
-                }
-            }
+            onClicked: trigger()
         }
     }
 
@@ -64,5 +56,21 @@ Window {
             photoPreview.displayed = false;
             photoPreview.source = '';
         }
+    }
+
+    function trigger()
+    {
+        if(photoPreview.displayed) {
+            resetPreview();
+        }
+        else
+        {
+            countdown.start();
+        }
+    }
+
+    Connections {
+        target: raspberry
+        onButtonPressed: trigger()
     }
 }

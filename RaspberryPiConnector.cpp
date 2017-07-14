@@ -14,7 +14,7 @@ RaspberryPiConnector::~RaspberryPiConnector()
     workerThread->m_running = false;
 }
 
-bool RaspberryPiConnector::buttonPressed()
+bool RaspberryPiConnector::isButtonPressed()
 {
     return gpioActive;
 }

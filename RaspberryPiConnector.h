@@ -9,12 +9,12 @@
 class RaspberryPiConnector : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool buttonPressed READ buttonPressed NOTIFY buttonPressedChanged)
+    Q_PROPERTY(bool buttonPressed READ isButtonPressed NOTIFY buttonPressedChanged)
 
 public:
     explicit RaspberryPiConnector(QObject *parent = nullptr);
     ~RaspberryPiConnector();
-    bool buttonPressed();
+    bool isButtonPressed();
 
 signals:
     void buttonPressedChanged();
