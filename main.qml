@@ -4,11 +4,16 @@ import QtMultimedia 5.7
 
 Window {
     id: window
+
+    property bool cooldown: false
+
     visible: true
     title: "Raspberry Pi Photobooth"
 
     minimumWidth: 720
     minimumHeight: 480
+
+    color: 'black'
 
     Camera {
         id: camera
@@ -46,8 +51,16 @@ Window {
 
     Timer {
         id: resetPreviewTimer
-        interval: 10000
+        interval: 30000
         onTriggered: resetPreview()
+    }
+
+    Timer {
+        id: cooldownTimer
+        interval: 5000
+        onTriggered: {
+            window.cooldown = false;
+        }
     }
 
     function resetPreview()
@@ -60,18 +73,23 @@ Window {
 
     function trigger()
     {
-        if(photoPreview.displayed) {
-            resetPreview();
-        }
-        else
+        if(!window.cooldown && !countdown.running && !resetPreviewTimer.running)
         {
-            countdown.start();
+            console.log('Triggered', 'Preview:', photoPreview.displayed);
+            if(photoPreview.displayed) {
+                resetPreview();
+            }
+            else
+            {
+                countdown.start();
+            }
         }
+        window.cooldown = true;
+        cooldownTimer.start();
     }
 
     Connections {
         target: raspberry
-        buttonPressedChanged: trigger()
         onButtonPressedChanged: trigger()
     }
 }

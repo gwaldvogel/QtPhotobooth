@@ -4,6 +4,7 @@ Item {
     id: countdown
     property int length: 5
     property int current: 0
+    property bool running: false
 
     Rectangle {
         visible: timer.running
@@ -29,18 +30,20 @@ Item {
     {
         timer.stop();
         current = 0;
+        countdown.running = false;
         finished();
     }
 
     signal finished()
 
     function start() {
-        console.log('Starting timer...')
+        countdown.running = true;
+        console.log('Starting countdown timer.');
         timer.start();
     }
 
     function countUp() {
         current++;
-        console.log('Counting up:', current, 'Max:', length)
+        console.log('Countdown', current);
     }
 }
