@@ -24,7 +24,7 @@ Window {
         focus: visible
         MouseArea {
             anchors.fill: parent
-            onClicked: trigger()
+            onClicked: Qt.quit()
         }
     }
 
@@ -71,6 +71,7 @@ Window {
 
     Connections {
         target: raspberry
+        buttonPressedChanged: trigger()
         onButtonPressedChanged: trigger()
     }
 }
