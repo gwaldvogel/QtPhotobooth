@@ -71,6 +71,6 @@ Window {
 
     Connections {
         target: raspberry
-        onButtonPressed: trigger()
+        onButtonPressedChanged: trigger()
     }
 }
