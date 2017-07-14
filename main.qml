@@ -26,20 +26,43 @@ Window {
             anchors.fill: parent
             onClicked: {
                 if(photoPreview.displayed) {
-                    photoPreview.displayed = false;
-                    photoPreview.source = '';
-
+                    resetPreview();
                 }
                 else
                 {
-                    camera.imageCapture.capture();
+                    countdown.start();
                 }
             }
         }
     }
+
     Image {
         id: photoPreview
         property bool displayed: false
         anchors.fill: parent
+        fillMode: Image.PreserveAspectFit
+    }
+
+    Countdown {
+        id: countdown
+        anchors.fill: parent
+        onFinished: {
+            camera.imageCapture.capture();
+            resetPreviewTimer.start();
+        }
+    }
+
+    Timer {
+        id: resetPreviewTimer
+        interval: 10000
+        onTriggered: resetPreview()
+    }
+
+    function resetPreview()
+    {
+        if(photoPreview.displayed) {
+            photoPreview.displayed = false;
+            photoPreview.source = '';
+        }
     }
 }

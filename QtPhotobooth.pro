@@ -3,7 +3,10 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    RaspberryPiConnector.cpp \
+    GpioWorker.cpp \
+    GPIOClass.cpp
 
 RESOURCES += qml.qrc
 
@@ -28,3 +31,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    RaspberryPiConnector.h \
+    GpioWorker.h \
+    GPIOClass.h
