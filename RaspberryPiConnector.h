@@ -4,6 +4,8 @@
 #include <QObject>
 #include <thread>
 
+#include <config.h>
+
 #include <GPIOWorkerThread.h>
 
 class RaspberryPiConnector : public QObject
@@ -24,7 +26,10 @@ private:
     bool gpioActive = false;
     bool buttonCanBePressed = true;
 
+#ifdef __RASPBERRYPI
     GPIOWorkerThread* workerThread = NULL;
+#endif
+
 };
 
 #endif // RASPBERRYPICONNECTOR_H

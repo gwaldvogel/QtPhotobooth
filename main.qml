@@ -21,6 +21,10 @@ Window {
             photoPreview.source = preview
             photoPreview.displayed = true;
         }
+        imageCapture.onImageSaved: {
+            console.log('Image saved', path);
+            cloud.uploadPhoto(path);
+        }
     }
 
     VideoOutput {
@@ -29,7 +33,7 @@ Window {
         focus: visible
         MouseArea {
             anchors.fill: parent
-            onClicked: Qt.quit()
+            onClicked: trigger()
         }
     }
 
@@ -63,11 +67,23 @@ Window {
         }
     }
 
+    Image {
+        source: "qrc:/power.png"
+        width: 24
+        height: 24
+        opacity: 0.1
+        MouseArea {
+            anchors.fill: parent
+            onClicked: Qt.quit()
+        }
+    }
+
     function resetPreview()
     {
         if(photoPreview.displayed) {
             photoPreview.displayed = false;
             photoPreview.source = '';
+            console.log('Resetting preview');
         }
     }
 
@@ -90,6 +106,10 @@ Window {
 
     Connections {
         target: raspberry
-        onButtonPressedChanged: trigger()
+        onButtonPressedChanged: {
+            if(raspberry.buttonPressed) {
+                trigger();
+            }
+        }
     }
 }

@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Countdown.qml</file>
+        <file>cog.png</file>
+        <file>power.png</file>
     </qresource>
 </RCC>
