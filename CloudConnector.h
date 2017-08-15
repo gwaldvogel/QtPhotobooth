@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QPrinter>
 
 class CloudConnector : public QObject
 {
@@ -16,8 +17,12 @@ public slots:
     void replyFinished(QNetworkReply* reply);
 
 private:
+    void printPictures();
     QNetworkAccessManager* m_pManager;
+    QPrinter m_printer;
     QString m_baseUrl;
+    QString m_firstImage;
+    QString m_secondImage;
 };
 
 #endif // CLOUDCONNECTOR_H

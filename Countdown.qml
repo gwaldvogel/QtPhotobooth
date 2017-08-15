@@ -3,6 +3,7 @@ import QtQuick 2.0
 Item {
     id: countdown
     property int length: 5
+    property int tempLength: 0
     property int current: 0
     property bool running: false
 
@@ -31,6 +32,11 @@ Item {
         timer.stop();
         current = 0;
         countdown.running = false;
+        if(countdown.tempLength != 0)
+        {
+            countdown.length = countdown.tempLength;
+            countdown.tempLength = 0;
+        }
         finished();
     }
 
@@ -40,6 +46,13 @@ Item {
         countdown.running = true;
         console.log('Starting countdown timer.');
         timer.start();
+    }
+
+    function startWithLength(len)
+    {
+        countdown.tempLength = countdown.length;
+        countdown.length = len;
+        start();
     }
 
     function countUp() {
