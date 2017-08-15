@@ -135,12 +135,6 @@ Window {
         }
     }
 
-    Settings {
-        id: settings
-
-        anchors.fill: parent
-    }
-
     Image {
         source: "qrc:/power.png"
         width: 24
@@ -149,19 +143,6 @@ Window {
         MouseArea {
             anchors.fill: parent
             onClicked: Qt.quit()
-        }
-    }
-
-    Image {
-        source: "qrc:/cog.png"
-        anchors.left: parent.left
-        anchors.bottom: parent.bottom
-        width: 24
-        height: 24
-        opacity: 0.1
-        MouseArea {
-            anchors.fill: parent
-            onClicked: settings.toggle()
         }
     }
 

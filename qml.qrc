@@ -4,7 +4,6 @@
         <file>Countdown.qml</file>
         <file>cog.png</file>
         <file>power.png</file>
-        <file>Settings.qml</file>
         <file>Spinner.qml</file>
     </qresource>
 </RCC>
