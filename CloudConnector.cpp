@@ -14,7 +14,6 @@
 CloudConnector::CloudConnector(QObject *parent)
     : QObject(parent)
     , m_pManager(new QNetworkAccessManager(this))
-    , m_printer()
     , m_firstImage("")
     , m_secondImage("")
 {
