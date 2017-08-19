@@ -52,6 +52,7 @@ Window {
             anchors.left: parent.left
             width: parent.width * 0.5
             height: parent.height
+            visible: false
 
             Text {
                 text: !window.secondPicture ? window.firstPictureText : window.secondPictureText
@@ -70,9 +71,10 @@ Window {
             focus: visible
             orientation: 90
 
-            anchors.left: tutorial.right
-            height: container.height
-            width: container.width * 0.5
+            //anchors.left: tutorial.right
+            //height: container.height
+            //width: container.width * 0.5
+            anchors.fill: parent
 
             Rectangle {
                 id:dummyVideo
